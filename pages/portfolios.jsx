@@ -10,11 +10,7 @@ const Portfolios = () => {
 		try {
 			await fetch('https://jsonplaceholder.typicode.com/posts')
 				.then((response) => response.json())
-				.then((data) => {
-					console.log(data.splice(0, 10));
-					setPosts(data.splice(0, 10));
-					return data;
-				});
+				.then((data) => setPosts(data.splice(0, 10)));
 		} catch (error) {
 			console.error(error);
 		}

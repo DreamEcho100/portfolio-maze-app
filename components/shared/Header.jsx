@@ -11,7 +11,7 @@ const Header = ({ title, children }) => {
 			<p className='customClassFromFile'> I am styled P element </p>
 
 			<Link href='/'>
-				<a style={{ fontSize: '20px' }}> Home </a>
+				<a> Home </a>
 			</Link>
 
 			<Link href='/about'>
@@ -29,16 +29,6 @@ const Header = ({ title, children }) => {
 			<Link href='/cv'>
 				<a> CV </a>
 			</Link>
-			<style jsx>
-				{`
-					a {
-						font-size: 2rem;
-					}
-					.customClass {
-						color: red;
-					}
-				`}
-			</style>
 		</>
 	);
 };

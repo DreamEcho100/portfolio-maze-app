@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+// import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import { Button, Container } from 'reactstrap';
 
 import BaseLayout from '../components/layouts/BaseLayout';
 import SuperComponent from '../components/SuperComponent';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
 	const [userData, setUserData] = useState({});
@@ -28,10 +28,15 @@ export default function Home() {
 
 	return (
 		<BaseLayout>
-			<h1 className='fromPage'> I am Index Page from Class Component</h1>
-			<h2>{title}</h2>
-			<h2>{userData.title}</h2>
-			<button onClick={updateTitle}> Change Title </button>
+			<h1> I am Index Page from Class Component</h1>
+			<Container>
+				<h2>{title}</h2>
+				<h2>{userData.title}</h2>
+				<Button className='font-size-inherit' onClick={updateTitle}>
+					{' '}
+					Change Title{' '}
+				</Button>
+			</Container>
 		</BaseLayout>
 	);
 }

@@ -1,7 +1,24 @@
-import '../styles/globals.css'
+import { Fragment } from 'react';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import '../styles/globals.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default MyApp
+// import Navbar from '../components/Navbar';
+// import Footer from '../components/Footer';
+import { DefaultMetaTags } from '../components/Meta/MetaTagsActions';
+
+const MyApp = ({ Component, pageProps }) => {
+	// debugger;
+	return (
+		<Fragment>
+			{/* <Navbar /> */}
+			<main className='base-page'>
+				<DefaultMetaTags />
+				<Component {...pageProps} />
+			</main>
+			{/* <Footer /> */}
+		</Fragment>
+	);
+};
+
+export default MyApp;

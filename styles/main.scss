@@ -1,7 +1,9 @@
+@import '../components/shared/fonts';
 .customClassFromFile {
-	color: blue;
+	color: #8f8fff;
 }
 
-.fromPage {
-	font-size: 5rem;
+html,
+body {
+	font-family: 'Montserrat', 'Helvetica' !important;
 }

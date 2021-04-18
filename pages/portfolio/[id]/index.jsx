@@ -1,13 +1,16 @@
 import { withRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import BaseLayout from '../components/layouts/BaseLayout';
+import BaseLayout from '../../../components/layouts/BaseLayout';
 
-const Portfolio = ({ query }) => {
+const Portfolio = ({ router: { query } }) => {
 	const portfolioId = query.id;
 	const [portfolio, setPortfolio] = useState({});
 
 	useEffect(async () => {
+		if (!portfolioId) {
+			return;
+		}
 		try {
 			const data = await fetch(
 				`https://jsonplaceholder.typicode.com/posts/${portfolioId}`
@@ -17,7 +20,7 @@ const Portfolio = ({ query }) => {
 		} catch (error) {
 			console.error(error);
 		}
-	}, []);
+	}, [portfolioId]);
 
 	return (
 		<BaseLayout>
