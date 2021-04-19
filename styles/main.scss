@@ -1,9 +1,21 @@
 @import '../components/shared/fonts';
+@import './index';
+@import './header.scss';
+
 .customClassFromFile {
 	color: #8f8fff;
 }
 
 html,
 body {
+	height: 100%;
+	width: 100%;
 	font-family: 'Montserrat', 'Helvetica' !important;
+}
+
+.self-typed {
+	font-size: 4rem;
+	font-weight: bold;
+	text-rendering: geometricPrecision;
+	letter-spacing: 0.2rem;
 }

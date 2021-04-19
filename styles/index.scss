@@ -1,0 +1,158 @@
+.navbar-toggler {
+	all: initial;
+	width: 3.5rem;
+	height: 3.5rem;
+	background-color: var(--main-font-color);
+	outline-color: var(--main-font-color);
+	border-radius: 0.2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+
+	.navbar-toggler-item {
+		width: 90%;
+		height: 0.5rem;
+		background-color: var(--main-bg-color);
+		&:nth-child(1),
+		&:nth-child(2),
+		&:nth-child(3) {
+			transform-origin: center;
+			transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+		}
+	}
+
+	&.navbar-opened {
+		.navbar-toggler-item {
+			&:nth-child(1) {
+				transform: translateY(200%) rotate(45deg);
+			}
+			&:nth-child(2) {
+				opacity: 0;
+			}
+			&:nth-child(3) {
+				transform: translateY(-200%) rotate(-45deg);
+			}
+		}
+	}
+}
+
+// Index -----------
+.cover {
+	background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
+	overflow: hidden;
+	position: relative;
+}
+
+.wrapper {
+	min-height: 90vh;
+	min-width: 90vw;
+	margin-top: 0;
+	position: relative;
+}
+
+.main-section {
+	top: 15rem;
+	width: 100%;
+	padding: 4em 0 0 0;
+}
+
+.hero-section {
+	h2 {
+		color: white;
+		font-weight: bold;
+		margin-bottom: 0.25em;
+	}
+
+	perspective: 100rem;
+	color: white;
+	width: 40rem;
+	position: relative;
+
+	&-content {
+		position: absolute;
+		bottom: 2rem;
+		width: 36rem;
+		left: 6%;
+		z-index: 1;
+
+		&-intro {
+			font-size: 1.7rem;
+		}
+	}
+}
+
+.image {
+	width: auto;
+	max-width: 100%;
+}
+
+.hero-welcome-text > h1 {
+	color: white;
+	text-transform: uppercase;
+	font-size: 2.7rem;
+	margin-top: 2em;
+}
+
+.hero-welcome-bio {
+	margin-top: 0.5em;
+	color: white;
+
+	.fa-stack {
+		font-size: 2.8rem;
+	}
+
+	.list-inline-item {
+		> a {
+			color: #373737;
+		}
+	}
+}
+
+.hero-welcome-wrapper {
+	justify-content: flex-end;
+}
+
+@media (max-width: 991px) {
+	.hero-section {
+		width: 34.1rem;
+		margin: auto;
+
+		&-content {
+			width: 34.1rem;
+		}
+	}
+
+	.hero-welcome-text {
+		margin-top: 1em;
+		& > h1 {
+			margin-top: 0rem;
+		}
+	}
+}
+
+.background-image {
+	position: absolute;
+	width: 176.2rem;
+	height: 49.3rem;
+}
+
+.shadow-custom {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	box-shadow: -1.7rem 1.3rem 4.1rem rgba(13, 78, 158, 0.6);
+	border: 0.2rem solid #3bace5;
+
+	.shadow-inner {
+		width: 100%;
+		height: 100%;
+		box-shadow: -1.7rem 1.3rem 1.3rem rgba(0, 0, 0, 0.09);
+	}
+}
+
+.shadow-custom-2 {
+	border: 0.2rem solid #f37d49;
+	box-shadow: -1.7rem 1.3rem 4.1rem rgba(13, 78, 158, 0.3);
+}

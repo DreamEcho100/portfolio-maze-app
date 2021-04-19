@@ -1,35 +1,88 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	// NavLink,
+	// NavbarText,
+} from 'reactstrap';
 
 import '../../styles/main.scss';
 
-const Header = ({ title, children }) => {
+const BsNavLink = (props) => {
+	const { href, title } = props;
 	return (
-		<>
-			<p> {title} </p>
-			{children}
-			<p className='customClass'> I am styled P element </p>
-			<p className='customClassFromFile'> I am styled P element </p>
+		<Link href={href}>
+			<a className='font-size-inherit nav-link port-navbar-link'>{title}</a>
+		</Link>
+	);
+};
 
-			<Link href='/'>
-				<a> Home </a>
-			</Link>
+const Header = ({ title, children }) => {
+	const [isOpen, setIsOpen] = useState(false);
 
-			<Link href='/about'>
-				<a> About </a>
-			</Link>
+	const toggle = () => {
+		setIsOpen(!isOpen);
+	};
 
-			<Link href='/portfolios'>
-				<a> Portfolio </a>
-			</Link>
-
-			<Link href='/blogs'>
-				<a> Blog </a>
-			</Link>
-
-			<Link href='/cv'>
-				<a> CV </a>
-			</Link>
-		</>
+	return (
+		<header className='current-theme main-header'>
+			<Navbar
+				className='port-navbar port-default absolute'
+				color='light'
+				light
+				expand='md'
+			>
+				<NavbarBrand className='font-size-inherit port-navbar-brand' href='/'>
+					Mazen Mohamed
+				</NavbarBrand>
+				<NavbarToggler
+					className={`${
+						isOpen ? 'navbar-opened' : ''
+					} font-size-inherit navbar-toggler no-theme`}
+					onClick={toggle}
+					children={
+						<>
+							<div
+								// style={{ backgroundColor: 'var(--main-bg-color) !important' }}
+								className='navbar-toggler-item no-theme'
+							></div>
+							<div
+								// style={{ background: 'var(--main-font-color) !important' }}
+								className='navbar-toggler-item no-theme'
+							></div>
+							<div
+								// style={{ background: 'var(--main-font-color) !important' }}
+								className='navbar-toggler-item no-theme'
+							></div>
+						</>
+					}
+				/>
+				<Collapse isOpen={isOpen} navbar>
+					<Nav className='mr-auto' navbar>
+						<NavItem className='port-navbar-item'>
+							<BsNavLink href='/' title='Home' />
+						</NavItem>
+						<NavItem className='port-navbar-item'>
+							<BsNavLink href='/about' title='About' />
+						</NavItem>
+						<NavItem className='port-navbar-item'>
+							<BsNavLink href='/portfolios' title='Portfolios' />
+						</NavItem>
+						<NavItem className='port-navbar-item'>
+							<BsNavLink href='/blogs' title='Blogs' />
+						</NavItem>
+						<NavItem className='port-navbar-item'>
+							<BsNavLink href='/cv' title='Cv' />
+						</NavItem>
+					</Nav>
+				</Collapse>
+			</Navbar>
+		</header>
 	);
 };
 
