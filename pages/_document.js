@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import script1 from '../static/js/script1';
+import script1 from '@/static/js/script1';
 
 class MyDocument extends Document {
 	// static async getInitialProps(ctx) {

@@ -1,3 +1,4 @@
+@import './globals.scss';
 @import '../components/shared/fonts';
 @import './index';
 @import './header.scss';
@@ -11,6 +12,14 @@ body {
 	height: 100%;
 	width: 100%;
 	font-family: 'Montserrat', 'Helvetica' !important;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.clickable {
+	cursor: pointer;
 }
 
 .self-typed {

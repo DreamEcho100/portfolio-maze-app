@@ -22,6 +22,23 @@ const BsNavLink = (props) => {
 	);
 };
 
+const BsNavBrand = () => (
+	<NavbarBrand
+		className='font-size-inherit navbar-brand port-navbar-brand'
+		href='/'
+	>
+		Mazen Mohamed
+	</NavbarBrand>
+);
+
+const LoginLink = () => (
+	<span className='nav-link port-navbar-link clickable'>Login</span>
+);
+
+const LogoutLink = () => (
+	<span className='nav-link port-navbar-link clickable'>Logout</span>
+);
+
 const Header = ({ title, children }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -37,9 +54,7 @@ const Header = ({ title, children }) => {
 				light
 				expand='md'
 			>
-				<NavbarBrand className='font-size-inherit port-navbar-brand' href='/'>
-					Mazen Mohamed
-				</NavbarBrand>
+				<BsNavBrand />
 				<NavbarToggler
 					className={`${
 						isOpen ? 'navbar-opened' : ''
@@ -78,6 +93,14 @@ const Header = ({ title, children }) => {
 						</NavItem>
 						<NavItem className='port-navbar-item'>
 							<BsNavLink href='/cv' title='Cv' />
+						</NavItem>
+					</Nav>
+					<Nav navbar>
+						<NavItem className='port-navbar-item'>
+							<LoginLink />
+						</NavItem>
+						<NavItem className='port-navbar-item'>
+							<LogoutLink />
 						</NavItem>
 					</Nav>
 				</Collapse>

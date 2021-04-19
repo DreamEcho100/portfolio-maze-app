@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 
-import BaseLayout from '../components/layouts/BaseLayout';
-import SuperComponent from '../components/SuperComponent';
+import BaseLayout from '@/components/layouts/BaseLayout';
+// import BasePage from '@/components/BasePage';
+// import SuperComponent from '@/components/SuperComponent';
 
 // import BackgroundIndexImage from '../public/images/background-index.png';
 // import Section1Image from '../public/images/section-1.png';

@@ -1,11 +1,10 @@
 const express = require('express');
 const next = require('next');
 const path = require('path');
-const routes = require('./routes');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = routes.getRequestHandler(app);
+const handle = app.getRequestHandler(app);
 
 app
 	.prepare()

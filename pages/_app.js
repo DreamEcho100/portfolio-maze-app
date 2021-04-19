@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 
-import '../styles/globals.scss';
+import '@/styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import Navbar from '../components/Navbar';
 // import Footer from '../components/Footer';
-import { DefaultMetaTags } from '../components/Meta/MetaTagsActions';
+import { DefaultMetaTags } from '@/components/Meta/MetaTagsActions';
 
 const MyApp = ({ Component, pageProps }) => {
 	// debugger;

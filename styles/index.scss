@@ -1,42 +1,3 @@
-.navbar-toggler {
-	all: initial;
-	width: 3.5rem;
-	height: 3.5rem;
-	background-color: var(--main-font-color);
-	outline-color: var(--main-font-color);
-	border-radius: 0.2rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-
-	.navbar-toggler-item {
-		width: 90%;
-		height: 0.5rem;
-		background-color: var(--main-bg-color);
-		&:nth-child(1),
-		&:nth-child(2),
-		&:nth-child(3) {
-			transform-origin: center;
-			transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
-		}
-	}
-
-	&.navbar-opened {
-		.navbar-toggler-item {
-			&:nth-child(1) {
-				transform: translateY(200%) rotate(45deg);
-			}
-			&:nth-child(2) {
-				opacity: 0;
-			}
-			&:nth-child(3) {
-				transform: translateY(-200%) rotate(-45deg);
-			}
-		}
-	}
-}
-
 // Index -----------
 .cover {
 	background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
@@ -59,13 +20,11 @@
 
 .hero-section {
 	h2 {
-		color: white;
 		font-weight: bold;
 		margin-bottom: 0.25em;
 	}
 
 	perspective: 100rem;
-	color: white;
 	width: 40rem;
 	position: relative;
 
@@ -88,15 +47,13 @@
 }
 
 .hero-welcome-text > h1 {
-	color: white;
-	text-transform: uppercase;
+	// text-transform: uppercase;
 	font-size: 2.7rem;
 	margin-top: 2em;
 }
 
 .hero-welcome-bio {
 	margin-top: 0.5em;
-	color: white;
 
 	.fa-stack {
 		font-size: 2.8rem;

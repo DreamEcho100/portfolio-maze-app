@@ -1,27 +1,18 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useGetPosts } from '@/actions/index.js';
 
-import BaseLayout from '../components/layouts/BaseLayout';
+import BaseLayout from '@/components/layouts/BaseLayout';
+import BasePage from '@/components/BasePage';
 
 const Portfolios = () => {
-	const [posts, setPosts] = useState([]);
-
-	useEffect(async () => {
-		try {
-			await fetch('https://jsonplaceholder.typicode.com/posts')
-				.then((response) => response.json())
-				.then((data) => setPosts(data.splice(0, 10)));
-		} catch (error) {
-			console.error(error);
-		}
-	}, []);
+	const { data, error, loading } = useGetPosts();
 
 	const renderPosts = (posts) => {
 		return posts.map((post, index) => {
 			return (
 				<li key={index}>
 					{/* <Link route={`/portfolio/${post.id}`}> */}
-					<Link href={`/portfolio/${post.id}`} as={`/portfolio/${post.id}`}>
+					<Link href='/portfolios/[id]' as={`/portfolios/${post.id}`}>
 						<a href='#' style={{ fontSize: '2rem' }}>
 							{' '}
 							{post.title}{' '}
@@ -34,8 +25,12 @@ const Portfolios = () => {
 
 	return (
 		<BaseLayout>
-			<h1> I am Portfolios Page </h1>
-			<ul>{renderPosts(posts)}</ul>
+			<BasePage>
+				<h1> I am Portfolios Page </h1>
+				{loading && <p>Loading data...</p>}
+				{data && <ul>{renderPosts(data)}</ul>}
+				{error && <div className='alert alert-danger'>{error.message}</div>}
+			</BasePage>
 		</BaseLayout>
 	);
 };

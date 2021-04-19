@@ -6,7 +6,6 @@
 
 	.port-navbar {
 		&-brand {
-			color: white;
 			font-size: 2.4rem;
 			text-transform: uppercase;
 			letter-spacing: 0.1rem;
@@ -19,7 +18,6 @@
 		}
 
 		&-link {
-			color: white;
 			font-weight: bold;
 			letter-spacing: 0.08rem;
 			font-size: 1.8rem;
@@ -32,6 +30,45 @@
 			&:hover,
 			&:focus {
 				color: #dba919;
+			}
+		}
+	}
+}
+
+.navbar-toggler {
+	all: initial;
+	width: 3.5rem;
+	height: 3.5rem;
+	background-color: var(--main-font-color);
+	outline-color: var(--main-font-color);
+	border-radius: 0.2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+
+	.navbar-toggler-item {
+		width: 90%;
+		height: 0.5rem;
+		background-color: var(--main-bg-color);
+		&:nth-child(1),
+		&:nth-child(2),
+		&:nth-child(3) {
+			transform-origin: center;
+			transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+		}
+	}
+
+	&.navbar-opened {
+		.navbar-toggler-item {
+			&:nth-child(1) {
+				transform: translateY(200%) rotate(-45deg);
+			}
+			&:nth-child(2) {
+				opacity: 0;
+			}
+			&:nth-child(3) {
+				transform: translateY(-200%) rotate(45deg);
 			}
 		}
 	}
