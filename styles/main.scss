@@ -1,7 +1,20 @@
+@import './shared/colors';
+@import './shared/mixins';
+
+// Globals
 @import './globals.scss';
 @import '../components/shared/fonts';
+
+// PAGES
 @import './index';
-@import './header.scss';
+// @import './portfolios';
+// @import './blogs';
+// @import './about';
+// @import './cv';
+
+// COMPONENTS
+@import './header';
+// @import './slate-editor';
 
 .customClassFromFile {
 	color: #8f8fff;

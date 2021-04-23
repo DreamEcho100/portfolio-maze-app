@@ -25,6 +25,8 @@ export const useGetData = (url) => {
 */
 import useSWR from 'swr';
 
+const baseURL = `${process.env.BASE_URL}/api/v1`;
+
 const fetcher = (url) =>
 	fetch(url).then(async (response) => {
 		const result = await response.json();
@@ -37,14 +39,21 @@ const fetcher = (url) =>
 	});
 
 export const useGetPosts = () => {
-	const { data, error, ...rest } = useSWR('/api/v1/posts', fetcher);
+	const { data = [], error, ...rest } = useSWR('/api/v1/posts', fetcher);
 	return { data, error, loading: !data && !error, ...rest };
 };
 
 export const useGetPostById = (id) => {
-	const { data, error, ...rest } = useSWR(
+	const { data = {}, error, ...rest } = useSWR(
 		id ? `/api/v1/posts/${id}` : null,
 		fetcher
 	);
 	return { data, error, loading: !data && !error, ...rest };
+};
+
+export const createPortfolio = async (portfolioData) => {
+	return await axiosInstance
+		.post(`${baseURL}/portfolios`, portfolioData, setAuthHeader())
+		.then((response) => response.data)
+		.catch((error) => rejectPromise(error));
 };

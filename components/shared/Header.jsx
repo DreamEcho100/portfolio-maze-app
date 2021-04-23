@@ -8,16 +8,42 @@ import {
 	Nav,
 	NavItem,
 	// NavLink,
-	// NavbarText,
+	Dropdown,
+	DropdownItem,
+	DropdownToggle,
+	DropdownMenu,
 } from 'reactstrap';
 
 import '../../styles/main.scss';
 
-const BsNavLink = (props) => {
-	const { href, title } = props;
+import auth0 from '@/services/auth0';
+
+const BsNavLink = ({
+	LinkTagHref,
+	anchorTagTitle,
+	addClassesNameToLinkTag,
+	defaultLinkTagClassName = 'font-size-inherit nav-link port-navbar-link',
+	extraLinkTagAttributes = {},
+	addClassesNameToAnchorTag,
+	defaultAnchorTagClassName = 'nav-link port-navbar-link',
+	extraAnchorTagAttributes = {},
+}) => {
+	const LinkTagAttributes = {
+		className: addClassesNameToLinkTag
+			? `${addClassesNameToLinkTag} ${defaultLinkTagClassName}`
+			: defaultLinkTagClassName,
+		href: LinkTagHref,
+		...extraLinkTagAttributes,
+	};
+	const anchorTagAttributes = {
+		className: addClassesNameToAnchorTag
+			? `${addClassesNameToAnchorTag} ${defaultAnchorTagClassName}`
+			: defaultAnchorTagClassName,
+		...extraAnchorTagAttributes,
+	};
 	return (
-		<Link href={href}>
-			<a className='font-size-inherit nav-link port-navbar-link'>{title}</a>
+		<Link {...LinkTagAttributes}>
+			<a {...anchorTagAttributes}>{anchorTagTitle}</a>
 		</Link>
 	);
 };
@@ -32,14 +58,74 @@ const BsNavBrand = () => (
 );
 
 const LoginLink = () => (
-	<span className='nav-link port-navbar-link clickable'>Login</span>
+	// <span className='nav-link port-navbar-link clickable'>Login</span>
+	<BsNavLink
+		extraAnchorTagAttributes={{
+			onClick: auth0.login,
+		}}
+		LinkTagHref='#' // '/api/v1/login'
+		anchorTagTitle='Login'
+	/>
 );
 
 const LogoutLink = () => (
-	<span className='nav-link port-navbar-link clickable'>Logout</span>
+	// <span className='nav-link port-navbar-link clickable'>Logout</span>
+	<BsNavLink
+		extraAnchorTagAttributes={{
+			onClick: auth0.logout,
+		}}
+		LinkTagHref='#' // '/api/v1/logout'
+		anchorTagTitle='Logout'
+	/>
 );
 
-const Header = ({ title, children }) => {
+const renderBlogMenu = ({ isSiteOwner }) => {
+	if (isSiteOwner) {
+		return (
+			<Dropdown
+				className='port-navbar-link port-dropdown-menu'
+				nav
+				isOpen={this.state.dropdownOpen}
+				toggle={this.toggleDropdown}
+			>
+				<DropdownToggle className='port-dropdown-toggle' nav caret>
+					Blog
+				</DropdownToggle>
+				<DropdownMenu>
+					<DropdownItem>
+						<BsNavLink
+							className='port-dropdown-item'
+							route='/blogs'
+							title='Blogs'
+						/>
+					</DropdownItem>
+					<DropdownItem>
+						<BsNavLink
+							className='port-dropdown-item'
+							route='/blogs/new'
+							title='Create a Blog'
+						/>
+					</DropdownItem>
+					<DropdownItem>
+						<BsNavLink
+							className='port-dropdown-item'
+							route='/blogs/dashboard'
+							title='Blogs Dashboard'
+						/>
+					</DropdownItem>
+				</DropdownMenu>
+			</Dropdown>
+		);
+	}
+
+	return (
+		<NavItem className='port-navbar-item'>
+			<BsNavLink route='/blogs' title='Blog' />
+		</NavItem>
+	);
+};
+
+const Header = ({ title, children, auth, isSiteOwner }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => {
@@ -47,7 +133,7 @@ const Header = ({ title, children }) => {
 	};
 
 	return (
-		<header className='current-theme main-header'>
+		<header className='main-header'>
 			<Navbar
 				className='port-navbar port-default absolute'
 				color='light'
@@ -80,27 +166,34 @@ const Header = ({ title, children }) => {
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className='mr-auto' navbar>
 						<NavItem className='port-navbar-item'>
-							<BsNavLink href='/' title='Home' />
+							<BsNavLink LinkTagHref='/' anchorTagTitle='Home' />
 						</NavItem>
 						<NavItem className='port-navbar-item'>
-							<BsNavLink href='/about' title='About' />
+							<BsNavLink LinkTagHref='/about' anchorTagTitle='About' />
 						</NavItem>
 						<NavItem className='port-navbar-item'>
-							<BsNavLink href='/portfolios' title='Portfolios' />
+							<BsNavLink
+								LinkTagHref='/portfolios'
+								anchorTagTitle='Portfolios'
+							/>
 						</NavItem>
 						<NavItem className='port-navbar-item'>
-							<BsNavLink href='/blogs' title='Blogs' />
+							<BsNavLink LinkTagHref='/blogs' anchorTagTitle='Blogs' />
 						</NavItem>
+						{/* {renderBlogMenu(isSiteOwner)} */}
 						<NavItem className='port-navbar-item'>
-							<BsNavLink href='/cv' title='Cv' />
+							<BsNavLink LinkTagHref='/cv' anchorTagTitle='Cv' />
 						</NavItem>
 					</Nav>
 					<Nav navbar>
-						<NavItem className='port-navbar-item'>
+						{/* <NavItem className='port-navbar-item'>
 							<LoginLink />
 						</NavItem>
 						<NavItem className='port-navbar-item'>
 							<LogoutLink />
+						</NavItem> */}
+						<NavItem className='port-navbar-item'>
+							{auth && auth.isAuthenticated ? <LogoutLink /> : <LoginLink />}
 						</NavItem>
 					</Nav>
 				</Collapse>

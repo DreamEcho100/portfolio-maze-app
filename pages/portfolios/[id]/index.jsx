@@ -1,8 +1,17 @@
 import { useRouter } from 'next/router';
 
+import {
+	AddToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '@/components/Meta/MetaTagsActions';
 import { useGetPostById } from '@/actions';
-import BasePage from '@/components/BasePage';
 
+import BasePage from '@/components/BasePage';
 import BaseLayout from '@/components/layouts/BaseLayout';
 
 const Portfolio = () => {
@@ -14,6 +23,27 @@ const Portfolio = () => {
 
 	return (
 		<BaseLayout>
+			{portfolio && (
+				<AddToHead
+					elements={[
+						TitleMetaTag({
+							title: handleTitle({
+								addFirst: `${portfolio.title} - Portfolio Page - `,
+							}),
+						}),
+						KeywordsMetaTag({
+							keywords: handleKeywords({
+								addFirst: [portfolio.title, portfolio.id, 'Portfolio Page'],
+							}),
+						}),
+						DescriptionMetaTag({
+							description: handleDescription({
+								addFirst: `${portfolio.title} - Portfolio Page - Id:${portfolio.id}, ${portfolio.body}`,
+							}),
+						}),
+					]}
+				/>
+			)}
 			<BasePage>
 				{loading && <p>Loading Data...</p>}
 				{error && <div className='alert alert-danger'>{error.message}</div>}

@@ -214,10 +214,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-light-1-bg-color-1);
-			--main-font-color: var(--theme-light-1-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -227,8 +229,12 @@
 			--main-bg-color: var(--theme-light-1-font-color-1);
 			--main-font-color: var(--theme-light-1-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }
@@ -243,10 +249,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-light-2-bg-color-1);
-			--main-font-color: var(--theme-light-2-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-font-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -256,8 +264,12 @@
 			--main-bg-color: var(--theme-light-2-font-color-1);
 			--main-font-color: var(--theme-light-2-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }
@@ -272,10 +284,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-light-3-bg-color-1);
-			--main-font-color: var(--theme-light-3-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-font-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -285,8 +299,12 @@
 			--main-bg-color: var(--theme-light-3-font-color-1);
 			--main-font-color: var(--theme-light-3-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }
@@ -302,10 +320,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-dark-1-bg-color-1);
-			--main-font-color: var(--theme-dark-1-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-font-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -315,8 +335,12 @@
 			--main-bg-color: var(--theme-dark-1-font-color-1);
 			--main-font-color: var(--theme-dark-1-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }
@@ -331,10 +355,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-dark-2-bg-color-1);
-			--main-font-color: var(--theme-dark-2-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-font-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -344,8 +370,12 @@
 			--main-bg-color: var(--theme-dark-2-font-color-1);
 			--main-font-color: var(--theme-dark-2-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }
@@ -360,10 +390,12 @@
 	.current-theme {
 		&:not(.no-theme),
 		*:not(.no-theme) {
-			--main-bg-color: var(--theme-dark-3-bg-color-1);
-			--main-font-color: var(--theme-dark-3-font-color-1);
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-font-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 
@@ -373,8 +405,12 @@
 			--main-bg-color: var(--theme-dark-3-font-color-1);
 			--main-font-color: var(--theme-dark-3-bg-color-1);
 
-			color: var(--main-font-color) !important;
-			background: var(--main-bg-color) !important;
+			&:not(.no-font-color-theme) {
+				color: var(--main-font-color) !important;
+			}
+			&:not(.no-bg-color-theme) {
+				background: var(--main-bg-color) !important;
+			}
 		}
 	}
 }

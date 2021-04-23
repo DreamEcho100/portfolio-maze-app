@@ -3,9 +3,9 @@ export default async (request, response) => {
 		const post = await fetch(
 			`https://jsonplaceholder.typicode.com/posts/${request.query.id}`
 		).then((response) => response.json());
-		response.status(200).json(post);
+		return response.status(200).json(post);
 	} catch (e) {
 		console.error(e);
-		response.status(error.status || 400).end({ message: 'Api error' });
+		return response.status(error.status || 400).end({ message: 'Api error' });
 	}
 };

@@ -1,14 +1,15 @@
 import React from 'react';
-// import Header from '../shared/Header';
+
 import Header from '@/components/shared/Header';
 
-const BaseLayout = ({ className, children }) => {
+const BaseLayout = ({ className, children, auth }) => {
 	return (
 		<div className='layout-container'>
-			<Header />
+			<Header auth={auth} />
 			<main
 				style={{
 					paddingTop: '5rem',
+					minHeight: '100vh',
 				}}
 				className={`cover ${className}`}
 			>

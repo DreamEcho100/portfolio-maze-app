@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { withRouter } from 'next/router';
 
 import {
 	AddToHead,
@@ -9,37 +10,45 @@ import {
 	TitleMetaTag,
 	handleTitle,
 } from '@/components/Meta/MetaTagsActions';
+import auth0Client from '@/services/auth0';
 
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 
-const Blogs = () => {
+const Callback = ({ router }) => {
+	useEffect(async () => {
+		await auth0Client.handleAuthentication().then((data) => {
+			router.push('/');
+			console.log(data, router);
+		});
+		// router.push('/').then((d) => console.log(d, router));
+	}, []);
 	return (
 		<BaseLayout>
 			<AddToHead
 				elements={[
 					TitleMetaTag({
 						title: handleTitle({
-							addFirst: 'Blogs Page - ',
+							addFirst: 'Callback Page - ',
 						}),
 					}),
 					KeywordsMetaTag({
 						keywords: handleKeywords({
-							addFirst: ['Blogs Page'],
+							addFirst: ['Callback Page'],
 						}),
 					}),
 					DescriptionMetaTag({
 						description: handleDescription({
-							addFirst: 'Blogs Page, ',
+							addFirst: 'Callback Page, ',
 						}),
 					}),
 				]}
 			/>
 			<BasePage>
-				<h1> I am Blogs Page </h1>
+				<h1> Varifying login data ... </h1>
 			</BasePage>
 		</BaseLayout>
 	);
 };
 
-export default Blogs;
+export default withRouter(Callback);

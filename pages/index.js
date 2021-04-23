@@ -3,6 +3,16 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 
+import {
+	AddToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '@/components/Meta/MetaTagsActions';
+
 import BaseLayout from '@/components/layouts/BaseLayout';
 // import BasePage from '@/components/BasePage';
 // import SuperComponent from '@/components/SuperComponent';
@@ -11,11 +21,10 @@ import BaseLayout from '@/components/layouts/BaseLayout';
 // import Section1Image from '../public/images/section-1.png';
 const BackgroundIndexImage = '';
 const Section1Image = '';
-export default function Home() {
+const Home = ({ auth }) => {
 	const [userData, setUserData] = useState({});
 	const [title, setTitle] = useState('I am Index Page');
 	const [initialData, setInitialData] = useState([1, 2, 3, 4]);
-
 	const roles = [
 		'Developer',
 		'Tech Lover',
@@ -42,7 +51,26 @@ export default function Home() {
 	}, []);
 
 	return (
-		<BaseLayout className='cover'>
+		<BaseLayout className='cover' auth={auth}>
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'Home Page - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['Home Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'Home Page, ',
+						}),
+					}),
+				]}
+			/>
 			<div className='main-section'>
 				<div className='background-image'>
 					<img src='images/background-index.png' />
@@ -95,4 +123,6 @@ export default function Home() {
 			</div>
 		</BaseLayout>
 	);
-}
+};
+
+export default Home;

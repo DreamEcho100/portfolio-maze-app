@@ -1,4 +1,14 @@
 import Link from 'next/link';
+
+import {
+	AddToHead,
+	DescriptionMetaTag,
+	handleDescription,
+	KeywordsMetaTag,
+	handleKeywords,
+	TitleMetaTag,
+	handleTitle,
+} from '@/components/Meta/MetaTagsActions';
 import { useGetPosts } from '@/actions/index.js';
 
 import BaseLayout from '@/components/layouts/BaseLayout';
@@ -25,6 +35,25 @@ const Portfolios = () => {
 
 	return (
 		<BaseLayout>
+			<AddToHead
+				elements={[
+					TitleMetaTag({
+						title: handleTitle({
+							addFirst: 'Portfolios Page - ',
+						}),
+					}),
+					KeywordsMetaTag({
+						keywords: handleKeywords({
+							addFirst: ['Portfolios Page'],
+						}),
+					}),
+					DescriptionMetaTag({
+						description: handleDescription({
+							addFirst: 'Portfolios Page, ',
+						}),
+					}),
+				]}
+			/>
 			<BasePage>
 				<h1> I am Portfolios Page </h1>
 				{loading && <p>Loading data...</p>}
