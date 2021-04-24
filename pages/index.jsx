@@ -40,11 +40,10 @@ const Home = ({ auth }) => {
 
 	useEffect(async () => {
 		try {
-			const data = await fetch(
-				'https://jsonplaceholder.typicode.com/todos/1'
-			).then((response) => response.json());
-
-			setUserData(data);
+			// const data = await fetch(
+			// 	'https://jsonplaceholder.typicode.com/todos/1'
+			// ).then((response) => response.json());
+			// setUserData(data);
 		} catch (error) {
 			console.error(error);
 		}

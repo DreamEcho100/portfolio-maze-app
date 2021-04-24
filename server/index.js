@@ -1,4 +1,5 @@
 const express = require('express');
+// const cors = require('cors');
 const next = require('next');
 const path = require('path');
 
@@ -13,6 +14,7 @@ app
 		const PORT = 3000;
 
 		server.use(express.json());
+		// server.use(cors());
 		// server.use(express.urlencoded({ extended: true }));
 		// server.use(express.static(path.join(__dirname, '../public')));
 

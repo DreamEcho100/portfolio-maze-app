@@ -13,9 +13,9 @@ import {
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 
-const Blogs = () => {
+const Blogs = ({ auth }) => {
 	return (
-		<BaseLayout>
+		<BaseLayout auth={auth}>
 			<AddToHead
 				elements={[
 					TitleMetaTag({
