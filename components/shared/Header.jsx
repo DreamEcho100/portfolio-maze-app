@@ -125,7 +125,7 @@ const renderBlogMenu = ({ isSiteOwner }) => {
 	);
 };
 
-const Header = ({ title, children, auth, isSiteOwner }) => {
+const Header = ({ title, children, isAuthenticated, user, isSiteOwner }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => {
@@ -193,8 +193,15 @@ const Header = ({ title, children, auth, isSiteOwner }) => {
 							<LogoutLink />
 						</NavItem> */}
 						<NavItem className='port-navbar-item'>
-							{auth && auth.isAuthenticated ? <LogoutLink /> : <LoginLink />}
+							{isAuthenticated ? <LogoutLink /> : <LoginLink />}
 						</NavItem>
+						{isAuthenticated && (
+							<NavItem className='port-navbar-item'>
+								<span className='font-size-inherit nav-link port-navbar-link clickable'>
+									{user.name}
+								</span>
+							</NavItem>
+						)}
 					</Nav>
 				</Collapse>
 			</Navbar>

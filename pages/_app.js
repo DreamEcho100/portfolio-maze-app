@@ -10,12 +10,12 @@ import { DefaultMetaTags } from '@/components/Meta/MetaTagsActions';
 // import Navbar from '../components/Navbar';
 // import Footer from '../components/Footer';
 
-const MyApp = ({ Component, pageProps, auth }) => {
+const MyApp = ({ Component, pageProps, auth, user }) => {
 	return (
 		<Fragment>
 			<main className='base-page'>
 				<DefaultMetaTags />
-				<Component {...pageProps} auth={auth} />
+				<Component {...pageProps} auth={auth} user={user} />
 			</main>
 			{/* <Footer /> */}
 		</Fragment>

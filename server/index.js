@@ -1,11 +1,23 @@
 const express = require('express');
 // const cors = require('cors');
 const next = require('next');
-const path = require('path');
+
+const authService = require('./services/auth');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler(app);
+
+const secretData = [
+	{
+		title: 'SecretData 1',
+		description: 'Plans how to build spaceship',
+	},
+	{
+		title: 'SecretData 2',
+		description: 'My secret passwords',
+	},
+];
 
 app
 	.prepare()
@@ -18,9 +30,34 @@ app
 		// server.use(express.urlencoded({ extended: true }));
 		// server.use(express.static(path.join(__dirname, '../public')));
 
+		server.get(
+			'/api/v1/secret',
+			[
+				authService.ha,
+				authService.checkJWT,
+				authService.verifyHeaderAuthorization,
+			],
+			(request, response) => {
+				return response.json(secretData);
+			}
+		);
+
 		server.get('*', (request, response) => {
 			return handle(request, response);
 		});
+
+		// server.use(authService.vh);
+
+		// server.use((error, request, response, next) => {
+		// 	if (error.name === 'UnauthorizedError') {
+		// 		response
+		// 			.status(401)
+		// 			.send({ title: 'Unauthorized', detail: 'Unauthorized Access!' });
+		// 	} else {
+		// 		console.log(request.headers.authorization);
+		// 		next();
+		// 	}
+		// });
 
 		server.use(handle).listen(PORT, (error) => {
 			if (error) {

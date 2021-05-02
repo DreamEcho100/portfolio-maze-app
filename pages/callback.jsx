@@ -17,11 +17,7 @@ import BasePage from '@/components/BasePage';
 
 const Callback = ({ router }) => {
 	useEffect(async () => {
-		await auth0Client.handleAuthentication().then((data) => {
-			router.push('/');
-			console.log(data, router);
-		});
-		// router.push('/').then((d) => console.log(d, router));
+		await auth0Client.handleAuthentication().then(() => router.push('/'));
 	}, []);
 	return (
 		<BaseLayout>

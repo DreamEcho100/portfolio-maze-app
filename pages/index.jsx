@@ -25,6 +25,7 @@ const Home = ({ auth }) => {
 	const [userData, setUserData] = useState({});
 	const [title, setTitle] = useState('I am Index Page');
 	const [initialData, setInitialData] = useState([1, 2, 3, 4]);
+
 	const roles = [
 		'Developer',
 		'Tech Lover',
@@ -33,10 +34,6 @@ const Home = ({ auth }) => {
 		'React.js',
 		'Node.js',
 	];
-
-	const updateTitle = () => {
-		setTitle('I am Updated Index Page');
-	};
 
 	useEffect(async () => {
 		try {
@@ -50,7 +47,7 @@ const Home = ({ auth }) => {
 	}, []);
 
 	return (
-		<BaseLayout className='cover' auth={auth}>
+		<BaseLayout className='cover' {...auth}>
 			<AddToHead
 				elements={[
 					TitleMetaTag({
@@ -97,22 +94,25 @@ const Home = ({ auth }) => {
 						<Col md='6' className='hero-welcome-wrapper'>
 							<div className='hero-welcome-text'>
 								<h1>
+									{auth.isAuthenticated && <strong>{auth.user.name}</strong>}{' '}
 									Welcome to the portfolio website of Filip Jerga. Get informed,
 									collaborate and discover projects I was working on through the
 									years!
 								</h1>
 							</div>
-							<Typed
-								loop
-								typeSpeed={70}
-								backSpeed={70}
-								strings={roles}
-								backDelay={1000}
-								loopCount={0}
-								showCursor
-								className='self-typed'
-								cursorChar='|'
-							/>
+							<em>
+								<Typed
+									loop
+									typeSpeed={70}
+									backSpeed={70}
+									strings={roles}
+									backDelay={1000}
+									loopCount={0}
+									showCursor
+									className='self-typed'
+									cursorChar='|'
+								/>
+							</em>
 							<div className='hero-welcome-bio'>
 								<h1>Let's take a look on my work.</h1>
 							</div>

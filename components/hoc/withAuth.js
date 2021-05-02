@@ -1,8 +1,8 @@
 import React from 'react';
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
-
-export default (role) => (Component) =>
+/*
+const wrapper = (role) => (Component) =>
 	class withAuth extends React.Component {
 		static async getInitialProps(args) {
 			const pageProps =
@@ -57,3 +57,15 @@ export default (role) => (Component) =>
 			return this.renderProtectedPage();
 		}
 	};
+
+export default wrapper;
+*/
+const wrapper = (role) => (Component) => {
+	return class withAuth extends React.Component {
+		render() {
+			return <Component {...this.props} />;
+		}
+	};
+};
+
+export default wrapper;

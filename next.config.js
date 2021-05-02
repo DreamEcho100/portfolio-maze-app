@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
-const prod = process.env.NODE_ENV === 'production';
+// const prod = process.env.NODE_ENV === 'production';
 
 module.exports = withCss(
 	withSass({
@@ -21,11 +21,13 @@ module.exports = withCss(
 			return config;
 		},
 		env: {
-			BASE_URL: prod
-				? process.env.BASE_URL_PRODUCTION
-				: process.env.BASE_URL_DEVOLOPMENT,
+			BASE_URL:
+				process.env.NODE_ENV === 'production'
+					? process.env.BASE_URL_PRODUCTION
+					: process.env.BASE_URL_DEVOLOPMENT,
 			NAMESPACE: process.env.NAMESPACE,
-			CLIENT_ID: process.env.CLIENT_ID,
+			AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+			AUTH0_ISSUER_BASE_URL: process.env.AUTH0_ISSUER_BASE_URL,
 		},
 	})
 );

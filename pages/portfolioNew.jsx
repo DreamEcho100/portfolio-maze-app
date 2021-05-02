@@ -41,7 +41,7 @@ const PortfolioNew = ({ auth }) => {
 	};
 
 	return (
-		<BaseLayout auth={auth}>
+		<BaseLayout {...auth}>
 			<BasePage className='portfolio-create-page' title='Create New Portfolio'>
 				<Row>
 					<Col md='6'>

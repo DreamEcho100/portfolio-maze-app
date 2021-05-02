@@ -15,7 +15,7 @@ import BasePage from '@/components/BasePage';
 
 const CV = ({ auth }) => {
 	return (
-		<BaseLayout auth={auth}>
+		<BaseLayout {...auth}>
 			<AddToHead
 				elements={[
 					TitleMetaTag({

@@ -4,16 +4,21 @@ import jwt from 'jsonwebtoken';
 
 import { getCookieFromReq } from '../helpers/utils';
 
-const CLIENT_ID = process.env.CLIENT_ID;
-
 class Auth0 {
 	constructor() {
 		this.auth0 = new auth0.WebAuth({
+			domain: process.env.AUTH0_ISSUER_BASE_URL,
+			clientID: process.env.AUTH0_CLIENT_ID,
+			redirectUri: `${process.env.BASE_URL}/callback`,
+			responseType: 'token id_token',
+			scope: 'openid profile',
+			/*
 			domain: 'dreamecho100.eu.auth0.com',
 			clientID: CLIENT_ID,
 			redirectUri: `${process.env.BASE_URL}/callback`,
 			responseType: 'token id_token',
 			scope: 'openid profile',
+			*/
 		});
 
 		// this.login = this.login.bind(this);
@@ -24,8 +29,7 @@ class Auth0 {
 			this.auth0.parseHash((error, authResult) => {
 				if (authResult && authResult.accessToken && authResult.idToken) {
 					this.setSession(authResult);
-					resolve(authResult);
-					return authResult;
+					resolve();
 				} else if (error) {
 					reject(error);
 					console.error(error);
@@ -47,7 +51,7 @@ class Auth0 {
 
 		this.auth0.logout({
 			returnTo: process.env.BASE_URL,
-			clientID: CLIENT_ID,
+			clientID: process.env.AUTH0_CLIENT_ID,
 		});
 	};
 
@@ -56,10 +60,8 @@ class Auth0 {
 	};
 
 	getJWKS = async () => {
-		//  const res = await axios.get('https://dreamecho100.eu.auth0.com/.well-known/jwks.json');
-		//  const jwks = res.data;
-		const jwks = fetch(
-			'https://dreamecho100.eu.auth0.com/.well-known/jwks.json'
+		const jwks = await fetch(
+			`https://${process.env.AUTH0_ISSUER_BASE_URL}/.well-known/jwks.json`
 		).then((response) => response.json());
 		return jwks;
 	};
