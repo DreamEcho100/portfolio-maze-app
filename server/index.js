@@ -33,7 +33,7 @@ app
 		server.get(
 			'/api/v1/secret',
 			[
-				authService.ha,
+				// authService.ha,
 				authService.checkJWT,
 				authService.verifyHeaderAuthorization,
 			],
@@ -42,9 +42,15 @@ app
 			}
 		);
 
-		server.get('*', (request, response) => {
-			return handle(request, response);
-		});
+		server.get(
+			'*',
+			// authService.verifyHeaderAuthorization,
+			(request, response) => {
+				return handle(request, response);
+			}
+		);
+
+		server.use(authService.verifyHeaderAuthorization);
 
 		// server.use(authService.vh);
 

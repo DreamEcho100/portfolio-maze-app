@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "node server/index.js",
+		"dev": "npx kill-port 3000 && nodemon server/index.js",
 		"build": "next build",
 		"start-dev": "cross-env NODE_ENV=production node server/index.js",
 		"start": "next start"
@@ -48,5 +48,8 @@
 		"slate-simple-editor": "git+https://github.com/Jerga99/slate-simple-editor.git",
 		"slugify": "^1.5.0",
 		"swr": "^0.5.5"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.7"
 	}
 }

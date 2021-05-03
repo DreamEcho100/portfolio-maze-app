@@ -1,16 +1,18 @@
 import withAuth from '@/components/hoc/withAuth';
 
+import { getSecretData } from '../actions/index';
+
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
 import { useEffect, useState } from 'react';
 
-const Secret = ({ auth, superSecretValue }) => {
+const Secret = ({ auth, superSecretValue, anotherSecretData }) => {
 	const [secretData, setSecretData] = useState([]);
 
 	useEffect(async () => {
-		const secretData = await fetch('/api/v1/secret').then((response) =>
-			response.json()
-		);
+		const secretData = /*anotherSecretData
+			? anotherSecretData
+			: */ await getSecretData();
 
 		setSecretData(secretData);
 	}, []);
@@ -31,7 +33,6 @@ const Secret = ({ auth, superSecretValue }) => {
 			<BasePage>
 				<h1>I am Secret Page</h1>
 				<p>Secret Content Here</p>
-				<h2>{superSecretValue}</h2>
 				{displaySecretData()}
 			</BasePage>
 		</BaseLayout>
@@ -40,8 +41,10 @@ const Secret = ({ auth, superSecretValue }) => {
 
 export default withAuth()(Secret);
 
-Secret.getInitialProps = () => {
+Secret.getInitialProps = async ({ req }) => {
 	const superSecretValue = 'Super Secret Value';
 
-	return { superSecretValue };
+	const anotherSecretData = await getSecretData(req);
+
+	return { anotherSecretData };
 };

@@ -1,3 +1,28 @@
+import Cookies from 'js-cookie';
+
+const setAuthorizationHeader = () => {
+	const token = Cookies.getJSON('jwt');
+
+	if (token) {
+		return { authorization: `Bearer ${token}` };
+	}
+
+	return {};
+};
+
+export const getSecretData = async (req) => {
+	// const url = req ? `${process.env.BASE_URL}/api/v1/secret` : '/api/v1/secret';
+	const url = `${process.env.BASE_URL}/api/v1/secret`;
+
+	return await fetch(url, {
+		method: 'GET',
+		headers: {
+			'Content-type': 'application/json',
+			...setAuthorizationHeader(),
+		},
+	}).then((response) => response.json());
+};
+
 /*
 import { useEffect, useState } from 'react';
 
