@@ -32,11 +32,7 @@ app
 
 		server.get(
 			'/api/v1/secret',
-			[
-				authService.ha,
-				authService.checkJWT,
-				authService.verifyHeaderAuthorization,
-			],
+			[authService.checkJWT, authService.verifyHeaderAuthorization],
 			(request, response) => {
 				console.log(request.user);
 				return response.json(secretData);
@@ -46,7 +42,6 @@ app
 		server.get(
 			'/api/v1/onlysiteowner',
 			[
-				authService.ha,
 				authService.checkJWT,
 				authService.verifyHeaderAuthorization,
 				authService.checkRole('siteOwner'),
