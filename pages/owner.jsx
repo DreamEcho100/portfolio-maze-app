@@ -43,4 +43,4 @@ const Owner = ({ auth }) => {
 	);
 };
 
-export default withAuth()(Owner);
+export default withAuth('siteOwner')(Owner);

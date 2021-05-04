@@ -33,9 +33,23 @@ app
 		server.get(
 			'/api/v1/secret',
 			[
-				// authService.ha,
+				authService.ha,
 				authService.checkJWT,
 				authService.verifyHeaderAuthorization,
+			],
+			(request, response) => {
+				console.log(request.user);
+				return response.json(secretData);
+			}
+		);
+
+		server.get(
+			'/api/v1/onlysiteowner',
+			[
+				authService.ha,
+				authService.checkJWT,
+				authService.verifyHeaderAuthorization,
+				authService.checkRole('siteOwner'),
 			],
 			(request, response) => {
 				return response.json(secretData);
@@ -44,13 +58,13 @@ app
 
 		server.get(
 			'*',
-			// authService.verifyHeaderAuthorization,
+			authService.verifyHeaderAuthorization,
 			(request, response) => {
 				return handle(request, response);
 			}
 		);
 
-		server.use(authService.verifyHeaderAuthorization);
+		// server.use(authService.verifyHeaderAuthorization);
 
 		// server.use(authService.vh);
 

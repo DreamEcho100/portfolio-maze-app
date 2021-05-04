@@ -26,10 +26,9 @@ module.exports = withCss(
 					? process.env.BASE_URL_PRODUCTION
 					: process.env.BASE_URL_DEVOLOPMENT,
 			NAMESPACE:
-				// process.env.NAMESPACE
 				process.env.NODE_ENV === 'production'
-					? process.env.BASE_URL_PRODUCTION
-					: process.env.BASE_URL_DEVOLOPMENT,
+					? process.env.NAMESPACE_PROD
+					: process.env.NAMESPACE_DEV,
 			AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
 			AUTH0_ISSUER_BASE_URL: process.env.AUTH0_ISSUER_BASE_URL,
 		},

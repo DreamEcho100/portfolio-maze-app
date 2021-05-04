@@ -10,9 +10,7 @@ const Secret = ({ auth, superSecretValue, anotherSecretData }) => {
 	const [secretData, setSecretData] = useState([]);
 
 	useEffect(async () => {
-		const secretData = /*anotherSecretData
-			? anotherSecretData
-			: */ await getSecretData();
+		const secretData = await getSecretData();
 
 		setSecretData(secretData);
 	}, []);

@@ -4,14 +4,6 @@ import BasePage from '@/components/BasePage';
 
 const wrapper = (role) => (Component) => {
 	return class withAuth extends React.Component {
-		// static async getInitialProps(args) {
-		// 	const pageProps =
-		// 		(await Component.getInitialProps) &&
-		// 		(await Component.getInitialProps(args));
-
-		// 	return { ...pageProps };
-		// }
-
 		static async getInitialProps(args) {
 			const pageProps =
 				(await Component.getInitialProps) &&
@@ -22,7 +14,7 @@ const wrapper = (role) => (Component) => {
 
 		renderProtectedPage() {
 			const { isAuthenticated, user } = this.props.auth;
-			const userRole = user && user[`${process.env.NAMESPACE}/role`];
+			const userRole = user && user[`${process.env.NAMESPACE}/roles`];
 			let isAuthorized = false;
 
 			if (role) {
@@ -34,7 +26,6 @@ const wrapper = (role) => (Component) => {
 			}
 
 			if (!isAuthenticated) {
-				console.log('1');
 				return (
 					<BaseLayout {...this.props.auth}>
 						<BasePage>
@@ -46,7 +37,6 @@ const wrapper = (role) => (Component) => {
 					</BaseLayout>
 				);
 			} else if (!isAuthorized) {
-				console.log('2');
 				return (
 					<BaseLayout {...this.props.auth}>
 						<BasePage>
