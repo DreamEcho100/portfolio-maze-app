@@ -3,11 +3,12 @@
 
 // Globals
 @import './globals.scss';
-@import '../components/shared/fonts';
+@import './shared/fonts';
+@import './shared/colors';
 
 // PAGES
 @import './index';
-// @import './portfolios';
+@import './portfolios';
 // @import './blogs';
 // @import './about';
 // @import './cv';
@@ -25,6 +26,23 @@ body {
 	height: 100%;
 	width: 100%;
 	font-family: 'Montserrat', 'Helvetica' !important;
+}
+
+.base-page {
+	padding-top: 15rem;
+	color: white;
+	color: black;
+	background-color: #ecedee;
+	min-height: 100vh;
+
+	.page-header {
+		.page-header-title {
+			font-weight: 700;
+			color: black;
+			display: inline-block;
+			margin-bottom: 2rem;
+		}
+	}
 }
 
 .absolute {

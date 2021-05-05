@@ -135,7 +135,7 @@ const Header = ({ title, children, isAuthenticated, user, isSiteOwner }) => {
 	return (
 		<header className='main-header'>
 			<Navbar
-				className='port-navbar port-default absolute'
+				className={`port-navbar port-nav-base absolute ${className}`}
 				color='light'
 				light
 				expand='md'

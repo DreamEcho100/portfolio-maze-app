@@ -47,7 +47,7 @@ const Home = ({ auth }) => {
 	}, []);
 
 	return (
-		<BaseLayout className='cover' {...auth}>
+		<BaseLayout className='cover' {...auth} headerType="index">
 			<AddToHead
 				elements={[
 					TitleMetaTag({

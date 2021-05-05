@@ -15,7 +15,7 @@ import BasePage from '@/components/BasePage';
 
 const About = ({ auth }) => {
 	return (
-		<BaseLayout {...auth}>
+		<BaseLayout {...auth} className="about-page" title="I am About Page">
 			<AddToHead
 				elements={[
 					TitleMetaTag({

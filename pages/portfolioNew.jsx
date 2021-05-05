@@ -30,13 +30,15 @@ const PortfolioNew = ({ auth }) => {
 		createPortfolio(portfolioData)
 			.then((portfolio) => {
 				setSubmitting(false);
-				this.setError({ error: undefined });
+				if (error !== undefined) {
+					setError({ error: undefined });
+				}
 				Router.pushRoute('/portfolios');
 			})
 			.catch((err) => {
 				const error = err.message || 'Server Error!';
 				setSubmitting(false);
-				this.setError({ error });
+				setError({ error });
 			});
 	};
 
