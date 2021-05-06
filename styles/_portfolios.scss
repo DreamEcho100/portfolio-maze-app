@@ -1,12 +1,13 @@
 .portfolio-page {
 	min-height: 100vh;
-	padding: 15rem 0 0;
+	padding: 1em 0 0;
 	background-color: $base-page-white;
 
 	.portfolio-card {
+		margin: 1em;
 		background-image: linear-gradient(45deg, #4e54c8 0%, #8f94fb 100%);
 		border: none;
-		color: white;
+		color: var(--main-font-color);
 		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
 		margin-bottom: 2rem;
 
@@ -46,5 +47,28 @@
 			text-transform: uppercase;
 			margin-bottom: 5rem;
 		}
+	}
+}
+
+.portfolio-create-page {
+	padding: 1em;
+
+	.react-datepicker__month-container {
+		width: 25rem;
+		max-width: 99%;
+	}
+
+	.react-datepicker__day-names,
+	.react-datepicker__week {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.react-datepicker__day-names,
+	.react-datepicker__week {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
 	}
 }

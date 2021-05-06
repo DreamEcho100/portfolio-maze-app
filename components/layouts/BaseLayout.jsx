@@ -2,7 +2,13 @@ import React from 'react';
 
 import Header from '@/components/shared/Header';
 
-const BaseLayout = ({ className = '', children, isAuthenticated, user }) => {
+const BaseLayout = ({
+	className = '',
+	children,
+	isAuthenticated,
+	user,
+	headerType,
+}) => {
 	return (
 		<div className='layout-container'>
 			<Header

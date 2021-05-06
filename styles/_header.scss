@@ -1,14 +1,12 @@
 // HEADER
-// HEADER
 
-/*.port-navbar.port-nav-base {
+.port-navbar.port-nav-base {
 	width: 100%;
 	z-index: 15;
-	padding: 2em;
+	padding: 0.5em;
 
 	.port-navbar {
 		&-brand {
-			color: white;
 			font-size: 2.4rem;
 			text-transform: uppercase;
 			letter-spacing: 0.1rem;
@@ -21,19 +19,18 @@
 		}
 
 		&-link {
-			color: white;
 			font-weight: bold;
 			letter-spacing: 0.08rem;
 			font-size: 1.8rem;
 			text-transform: uppercase;
 
 			&.active {
-				color: #dba919;
+				color: #dba919 !important;
 			}
 
 			&:hover,
 			&:focus {
-				color: #dba919;
+				color: #dba919 !important;
 			}
 		}
 	}
@@ -48,12 +45,12 @@
 		}
 
 		.port-dropdown-toggle {
-			color: white;
 			margin-left: 0.1em;
 			margin-right: 0rem;
 		}
 	}
-}*/
+}
+/*
 .port-navbar.port-default {
 	width: 100%;
 	z-index: 15;
@@ -104,6 +101,7 @@
 		}
 	}
 }
+*/
 
 .port-navbar.port-nav-base.port-nav-default {
 	padding: 3rem;

@@ -125,7 +125,14 @@ const renderBlogMenu = ({ isSiteOwner }) => {
 	);
 };
 
-const Header = ({ title, children, isAuthenticated, user, isSiteOwner }) => {
+const Header = ({
+	title,
+	children,
+	isAuthenticated,
+	user,
+	isSiteOwner,
+	className,
+}) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggle = () => {

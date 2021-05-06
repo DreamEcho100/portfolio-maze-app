@@ -7,7 +7,7 @@ import { Row, Col } from 'reactstrap';
 
 import { createPortfolio } from '../actions';
 
-import withAuth from '@/hoc/withAuth';
+import withAuth from '@/components/hoc/withAuth';
 import { Router } from '@/routes';
 import moment from 'moment';
 

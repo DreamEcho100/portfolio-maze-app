@@ -85,7 +85,7 @@ const Portfolios = () => {
 					}),
 				]}
 			/>
-			<BasePage>
+			<BasePage className='portfolio-page'>
 				<Row>
 					{loading && <p>Loading data...</p>}
 					{data && <ul>{renderPosts(data)}</ul>}
