@@ -55,7 +55,7 @@ app
 		// server.use(express.static(path.join(__dirname, '../public')));
 
 		server.use('/api/v1/books', bookRoutes);
-		server.use('/api/v1/portfolios', portfoliosRoutes);
+		server.use('/api/v1/portfolios', portfolioRoutes);
 
 		server.get(
 			'/api/v1/secret',

@@ -1,14 +1,11 @@
 import { Fragment } from 'react';
-// import { UserProvider } from '@auth0/nextjs-auth0';
+import auth0 from '@/services/auth0';
 
-// import '@/styles/index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import auth0 from '@/services/auth0';
 import { DefaultMetaTags } from '@/components/Meta/MetaTagsActions';
 
-// import Navbar from '../components/Navbar';
-// import Footer from '../components/Footer';
+const namespace = process.env.NAMESPACE;
 
 const MyApp = ({ Component, pageProps, auth, user }) => {
 	return (
@@ -17,7 +14,6 @@ const MyApp = ({ Component, pageProps, auth, user }) => {
 				<DefaultMetaTags />
 				<Component {...pageProps} auth={auth} user={user} />
 			</main>
-			{/* <Footer /> */}
 		</Fragment>
 	);
 };
@@ -35,7 +31,7 @@ MyApp.getInitialProps = async ({ Component, router, ctx }) => {
 	}
 
 	const isSiteOwner =
-		user && user[process.env.NAMESPACE + '/role'] === 'siteOwner';
+		user && user[`${process.env.NAMESPACE}/roles`] === 'siteOwner';
 	const auth = { user, isAuthenticated: !!user, isSiteOwner };
 
 	return { pageProps, auth };

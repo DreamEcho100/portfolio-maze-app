@@ -60,36 +60,55 @@ const PortfolioCreateForm = ({ initialValues, onSubmit, error }) => (
 		>
 			{({ isSubmitting }) => (
 				<Form>
-					<Field label='Title' type='text' name='title' component={PortInput} />
+					<Field type='text' name='title' label='Title' component={PortInput} />
 					<Field
-						label='Company'
 						type='text'
 						name='company'
+						label='Company'
 						component={PortInput}
 					/>
 					<Field
-						label='Location'
 						type='text'
 						name='location'
+						label='Location'
 						component={PortInput}
 					/>
 					<Field
-						label='Position'
 						type='text'
 						name='position'
+						label='Position'
 						component={PortInput}
 					/>
 					<Field
-						label='Description'
 						type='textarea'
 						name='description'
+						label='Description'
 						component={PortInput}
 					/>
-					<Field label='Start Date' name='startDate' component={PortDate} />
-					<Field label='End Date' name='endDate' component={PortDate} />
-					<button type='submit' disabled={isSubmitting}>
+
+					<Field
+						name='startDate'
+						label='Start Date'
+						initialDate={initialValues.startDate}
+						component={PortDate}
+					/>
+
+					<Field
+						name='endDate'
+						label='End Date'
+						canBeDisabled={true}
+						initialDate={initialValues.endDate}
+						component={PortDate}
+					/>
+					{error && <Alert color='danger'>{error}</Alert>}
+					<Button
+						color='success'
+						size='lg'
+						type='submit'
+						disabled={isSubmitting}
+					>
 						Create
-					</button>
+					</Button>
 				</Form>
 			)}
 		</Formik>

@@ -1,13 +1,6 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
-import {
-	Col,
-	Row,
-	Card,
-	CardHeader,
-	CardBody,
-	CardText,
-	CardTitle,
-} from 'reactstrap';
+import { Col, Row, Button } from 'reactstrap';
 
 import {
 	AddToHead,
@@ -18,54 +11,70 @@ import {
 	TitleMetaTag,
 	handleTitle,
 } from '@/components/Meta/MetaTagsActions';
-import { useGetPosts } from '@/actions/index.js';
+import { Router } from '@/routes';
+import { getPortfolios, deletePortfolio } from '@/actions';
 
 import BaseLayout from '@/components/layouts/BaseLayout';
 import BasePage from '@/components/BasePage';
-import { Fragment } from 'react';
+import PortfolioCard from '@/components/portfolio/PortfolioCard';
 
-const Portfolios = () => {
-	const { data, error, loading } = useGetPosts();
+const Portfolios = ({ auth, portfolios }) => {
+	const navigateToEdit = (portfolioId, e) => {
+		e.stopPropagation();
+		Router.pushRoute(`/portfolios/${portfolioId}/edit`);
+	};
 
-	const renderPosts = (posts) => {
-		return posts.map((post, index) => {
+	const displayDeleteWarning = (portfolioId, e) => {
+		e.stopPropagation();
+		const isConfirm = confirm(
+			'Are you sure you want to delete this portfolio???'
+		);
+
+		if (isConfirm) {
+			handleDeletePortfolio(portfolioId);
+		}
+	};
+
+	const handleDeletePortfolio = (portfolioId) => {
+		deletePortfolio(portfolioId)
+			.then(() => {
+				Router.pushRoute('/portfolios');
+			})
+			.catch((err) => console.error(err));
+	};
+
+	const renderPortfolios = (portfolios = []) => {
+		console.log(portfolios);
+		const { isAuthenticated, isSiteOwner } = auth;
+
+		return portfolios.map((portfolio, index) => {
 			return (
-				// <li key={index}>
-				// 	{/* <Link route={`/portfolio/${post.id}`}> */}
-				// 	<Link href='/portfolios/[id]' as={`/portfolios/${post.id}`}>
-				// 		<a href='#' style={{ fontSize: '2rem' }}>
-				// 			{' '}
-				// 			{post.title}{' '}
-				// 		</a>
-				// 	</Link>
-				// </li>
-				<Col md='4'>
-					<Fragment key={index}>
-						<span>
-							<Card className='portfolio-card'>
-								<CardHeader className='portfolio-card-header'>
-									Some Position {index}
-								</CardHeader>
-								<CardBody>
-									<p className='portfolio-card-city'> Some Location {index} </p>
-									<CardTitle className='portfolio-card-title'>
-										Some Company {index}
-									</CardTitle>
-									<CardText className='portfolio-card-text'>
-										Some Description {index}
-									</CardText>
-									<div className='readMore'> </div>
-								</CardBody>
-							</Card>
-						</span>
-					</Fragment>
+				<Col key={index} md='4'>
+					<PortfolioCard portfolio={portfolio}>
+						{isAuthenticated && isSiteOwner && (
+							<React.Fragment>
+								<Button
+									onClick={(e) => navigateToEdit(portfolio._id, e)}
+									color='warning'
+								>
+									Edit
+								</Button>{' '}
+								<Button
+									onClick={(e) => displayDeleteWarning(portfolio._id, e)}
+									color='danger'
+								>
+									Delete
+								</Button>
+							</React.Fragment>
+						)}
+					</PortfolioCard>
 				</Col>
 			);
 		});
 	};
 
 	return (
-		<BaseLayout>
+		<BaseLayout {...auth}>
 			<AddToHead
 				elements={[
 					TitleMetaTag({
@@ -86,14 +95,31 @@ const Portfolios = () => {
 				]}
 			/>
 			<BasePage className='portfolio-page'>
-				<Row>
-					{loading && <p>Loading data...</p>}
-					{data && <ul>{renderPosts(data)}</ul>}
-					{error && <div className='alert alert-danger'>{error.message}</div>}
-				</Row>
+				{auth.isAuthenticated && isSiteOwner && (
+					<Button
+						onClick={() => Router.pushRoute('/portfolioNew')}
+						color='success'
+						className='create-port-btn'
+					>
+						Create Portfolio
+					</Button>
+				)}
+				<Row>{renderPortfolios(portfolios)}</Row>
 			</BasePage>
 		</BaseLayout>
 	);
+};
+
+Portfolios.getInitialProps = async () => {
+	let portfolios = [];
+
+	try {
+		portfolios = await getPortfolios();
+	} catch (err) {
+		console.error(err);
+	}
+
+	return { portfolios };
 };
 
 export default Portfolios;
